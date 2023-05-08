@@ -1,0 +1,38 @@
+﻿<!-- Button trigger modal -->
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalLong">
+    Hakkımda Metin Oluştur
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="false">
+    <div class="modal-dialog" role="document">
+        <form method="post" action="/About/AddAbout">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="color: black" id="exampleModalLongTitle">Hakkımda Veri Girişi</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="color: black" action="/AddAbout/About">
+                    <label>Hakkımızda Metin1</label>
+                    <input type="text" style="background: grey" name="AboutDetails1" class="form-control" />
+                    <br />
+                    <label>Hakkımızda Metin2</label>
+                    <input type="text" style="background: grey" name="AboutDetails2" class="form-control" />
+                    <br />
+                    <label>Hakkımızda Görsel1</label>
+                    <input type="text" style="background: grey" name="AboutImage1" class="form-control" />
+                    <br />
+                    <label>Hakkımızda Görsel2</label>
+                    <input type="text" style="background: grey" name="AboutImage2" class="form-control" />
+                    <br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-success">Kaydet</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

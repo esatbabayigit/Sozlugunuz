@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "5ECVaJcpW8SwYF90QHvf7B+DNbFj4VZeHAUDy+DXkJ07W0DQPWhkmKOP5yZwI7R7avZKaV1Q4qj5p4/9PZqXnQ==",
+  "success": true,
+  "projectFilePath": "E:\\ADMİN\\VS PROJELER\\!Webb\\BusinessLayer\\BusinessLayer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\esatb\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
+    "C:\\Users\\esatb\\.nuget\\packages\\fluentvalidation\\11.5.1\\fluentvalidation.11.5.1.nupkg.sha512",
+    "C:\\Users\\esatb\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
+    "C:\\Users\\esatb\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.2\\system.threading.tasks.extensions.4.5.2.nupkg.sha512"
+  ],
+  "logs": []
+}

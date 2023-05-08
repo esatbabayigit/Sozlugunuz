@@ -1,0 +1,16 @@
+E:\ADMİN\VS PROJELER\!Webb\BusinessLayer\bin\Debug\BusinessLayer.dll
+E:\ADMİN\VS PROJELER\!Webb\BusinessLayer\bin\Debug\BusinessLayer.pdb
+E:\ADMİN\VS PROJELER\!Webb\BusinessLayer\bin\Debug\EntityFramework.SqlServer.dll
+E:\ADMİN\VS PROJELER\!Webb\BusinessLayer\bin\Debug\EntityFramework.dll
+E:\ADMİN\VS PROJELER\!Webb\BusinessLayer\bin\Debug\DataAccessLayer.dll
+E:\ADMİN\VS PROJELER\!Webb\BusinessLayer\bin\Debug\EntityLayer.dll
+E:\ADMİN\VS PROJELER\!Webb\BusinessLayer\bin\Debug\DataAccessLayer.pdb
+E:\ADMİN\VS PROJELER\!Webb\BusinessLayer\bin\Debug\EntityLayer.pdb
+E:\ADMİN\VS PROJELER\!Webb\BusinessLayer\obj\Debug\BusinessLayer.csproj.AssemblyReference.cache
+E:\ADMİN\VS PROJELER\!Webb\BusinessLayer\obj\Debug\BusinessLayer.csproj.CoreCompileInputs.cache
+E:\ADMİN\VS PROJELER\!Webb\BusinessLayer\obj\Debug\BusinessLayer.csproj.CopyComplete
+E:\ADMİN\VS PROJELER\!Webb\BusinessLayer\obj\Debug\BusinessLayer.dll
+E:\ADMİN\VS PROJELER\!Webb\BusinessLayer\obj\Debug\BusinessLayer.pdb
+E:\ADMİN\VS PROJELER\!Webb\BusinessLayer\bin\Debug\FluentValidation.dll
+E:\ADMİN\VS PROJELER\!Webb\BusinessLayer\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+E:\ADMİN\VS PROJELER\!Webb\BusinessLayer\bin\Debug\System.Threading.Tasks.Extensions.dll

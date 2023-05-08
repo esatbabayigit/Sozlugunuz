@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "NxJnnqiDGxa4OFQp5Hrx92UZtKy5L5rE0iE83lIi4EFZBUf7ll0rzN0+/UzBENqDli9R7zfQFlh1DclqoIKNvw==",
+  "success": true,
+  "projectFilePath": "E:\\ADMİN\\VS PROJELER\\!Webb\\DataAccessLayer\\DataAccessLayer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\esatb\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512"
+  ],
+  "logs": []
+}

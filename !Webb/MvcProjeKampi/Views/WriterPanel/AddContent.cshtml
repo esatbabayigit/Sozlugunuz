@@ -1,0 +1,132 @@
+﻿@using System.Web.Services.Description
+@model EntityLayer.Concreate.Content
+@{
+    ViewBag.Title = "AddContent";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+   
+    <title>
+        Diffuso
+    </title>
+
+    <!-- slider stylesheet -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Raleway:400,700&display=swap" rel="stylesheet" />
+
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="~/AdminLTE-3.0.4/diffuso-html/text/css" href="~/AdminLTE-3.0.4/diffuso-html/css/bootstrap.css" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/AdminLTE-3.0.4/diffuso-html/css/style.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="~/AdminLTE-3.0.4/diffuso-html/css/responsive.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <!-- end hero area -->
+    <!-- service section -->
+    <!-- end service section -->
+    <!-- portfolio section -->
+    <br />
+    <section class="portfolio_section">
+        <div class="heading_container">
+            <h2>
+                Yaz<span>ar</span>ımız
+            </h2>
+            <p>
+                Fikirleriniz ve içerikleriniz bizim için çok önemli 
+            </p>
+            <button class="btn-outline-danger"><h4><label>BAŞLIK: @ViewBag.heads </label></h4></button>
+            
+        </div>
+
+    </section>
+    <div class="hero_area">
+
+
+
+        <section class="slider_section">
+            <div class="slider_container">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active">
+                            01
+                        </li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1">
+                            02
+                        </li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2">
+                            03
+                        </li>
+                    </ol>
+                    <div class="carousel-inner">
+                        @Html.BeginForm("AddContent", "WriterPanel", FormMethod.Post)
+                        {
+                        <div class="carousel-item active">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-6 px-0">
+                                        <div class="img-box">
+                                            <img src="~/AdminLTE-3.0.4/diffuso-html/images/slider-img.jpg" alt="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="detail-box">
+                                            <h1>
+                                                İÇERİĞİNİZİ
+                                                <br />
+                                                EKLEYİN
+                                            </h1>
+                                            <p>
+                                                @Html.TextAreaFor(x => x.ContentValue, new { @class = "form-control" })
+                                                <input type="text" name="HeadingID" value="@ViewBag.ids" hidden="True" />
+                                            </p>
+                                            <button class=" btn border-success navbar-brand btn-lg">YAZINI EKLE</button>
+                                          
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                   
+                </div>
+            </div>
+        </section>
+
+        <!-- end slider section -->
+    </div>
+    <br /><br />
+
+
+
+    <script type="text/javascript" src="~/AdminLTE-3.0.4/diffuso-html/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="~/AdminLTE-3.0.4/diffuso-html/js/bootstrap.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+    </script>
+    <script type="text/javascript" src="~/AdminLTE-3.0.4/diffuso-html/js/custom.js"></script>
+
+</body>
+
+</html>
+

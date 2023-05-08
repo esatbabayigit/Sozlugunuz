@@ -1,0 +1,9 @@
+E:\ADMİN\VS PROJELER\!Webb\EntityLayer\bin\Debug\EntityLayer.dll
+E:\ADMİN\VS PROJELER\!Webb\EntityLayer\bin\Debug\EntityLayer.pdb
+E:\ADMİN\VS PROJELER\!Webb\EntityLayer\bin\Debug\EntityFramework.SqlServer.dll
+E:\ADMİN\VS PROJELER\!Webb\EntityLayer\bin\Debug\EntityFramework.dll
+E:\ADMİN\VS PROJELER\!Webb\EntityLayer\obj\Debug\EntityLayer.csproj.AssemblyReference.cache
+E:\ADMİN\VS PROJELER\!Webb\EntityLayer\obj\Debug\EntityLayer.csproj.CoreCompileInputs.cache
+E:\ADMİN\VS PROJELER\!Webb\EntityLayer\obj\Debug\EntityLayer.csproj.CopyComplete
+E:\ADMİN\VS PROJELER\!Webb\EntityLayer\obj\Debug\EntityLayer.dll
+E:\ADMİN\VS PROJELER\!Webb\EntityLayer\obj\Debug\EntityLayer.pdb

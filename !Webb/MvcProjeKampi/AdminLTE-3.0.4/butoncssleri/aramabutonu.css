@@ -1,0 +1,53 @@
+body {
+}
+.my-button {
+  background-color: #1A237E;
+   color: white;
+   padding: 8px 16px;
+   border: none;
+   border-radius: 5px;
+   font-size: 16px;
+   position: relative;
+   overflow: hidden;
+   width: 40px;
+   height: 31px;
+   margin-right: 2px;
+ }
+
+.my-button:hover {
+  background-color: #42A5F5;
+}
+
+.my-button .fa-search {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.my-button .fa-bars {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.my-button span {
+  position: absolute;
+  top: 50%;
+  left: 110%;
+  transform: translateY(-50%);
+  font-size: 16px;
+}
+
+.my-button:hover span {
+  color: white;
+}
+
+.my-button:hover .fa-search {
+  color: white;
+}
+
+

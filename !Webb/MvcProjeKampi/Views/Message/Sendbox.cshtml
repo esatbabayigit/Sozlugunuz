@@ -1,0 +1,196 @@
+﻿@using EntityLayer.Concreate
+@model PagedList.IPagedList<Message>
+@using PagedList
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Sendbox";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/butoncssleri/aramabutonu.css" type="text/css" />
+</head>
+<body class="hold-transition sidebar-mini">
+
+    <!-- Content Wrapper. Contains page content -->
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Mesaj Sayfası</h1>
+                </div>
+
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-3">
+
+                @Html.Action("ContactMenu", "Contact")
+            </div>
+            <!-- /.col -->
+            <div class="col-md-9">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">Gönderilen Mesajlar</h3>
+                        <div class="card-tools">
+                            <form method="post" action="/Message/SendBox">
+                                <div class="input-group input-group-sm">
+
+                                    <input type="text" class="form-control" name="yazi" placeholder="Mail Kutusunda Ara">
+
+                                    <div class="input-group-append">
+                                        <button class="my-button">
+                                            <i class="fa fa-search" style="color: white; margin-right: 10px;"></i>
+                                        </button>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <button class="my-button" name="ses" value="1">
+                                            <i class="nav-icon fas fa-bars" style="color: white; margin-right: 10px;"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                        <!-- /.card-tools -->
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body p-0">
+                        <div class="mailbox-controls">
+                            <!-- Check all button -->
+                            <label style="text-align: center; margin: auto; " class="btn btn-primary btn-sm checkbox-toggle">
+                                <input type="checkbox" id="select-all">
+                            </label>
+                            <div class="btn-group">
+                                <button type="button" onclick="deleteSelectedDrafts()" class="btn btn-primary btn-sm"><i class="far fa-trash-alt"></i></button>
+                            </div>
+                            <!-- /.btn-group -->
+                            <button type="button" onclick="location.reload()" class="btn btn-primary btn-sm"><i class="fas fa-sync-alt"></i></button>
+                            <div class="float-right">
+                                <div class="btn-group">
+                                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Sendbox", new { p = page }), new PagedListRenderOptions()
+                                    {
+                                        LiElementClasses = new List<string>() { "page-item" },
+                                        UlElementClasses = new List<string>() { "pagination" },
+                                        ContainerDivClasses = new List<string>() { "btn-group" },
+                                        LinkToPreviousPageFormat = "<button type='button' class='btn btn-sm btn-primary border rounded-circle'><i class='fas fa-chevron-left'></i></button>",
+                                        LinkToNextPageFormat = "<button type='button' class='btn btn-sm btn-primary border rounded-circle'><i class='fas fa-chevron-right'></i></button>",
+                                        DisplayPageCountAndCurrentLocation = false,
+                                        DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                                        DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                                        LinkToIndividualPageFormat = "",
+                                        PageCountAndCurrentLocationFormat = ""
+                                    })
+                                </div>
+                                <!-- /.btn-group -->
+                            </div>
+                            <!-- /.float-right -->
+                        </div>
+                        <div class="table-responsive mailbox-messages">
+                            <table class="table table-hover table-striped">
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="icheck-primary">
+                                                    <input type="checkbox" class="my-checkbox" name="my-checkbox" value="@item.MessageID">
+                                                    <label for="check_@item.MessageID" hidden="true">@item.MessageID</label>
+                                                </div>
+
+                                                <script>
+                                                    $(document).ready(function () {
+                                                        $('#select-all').click(function () {
+                                                            if ($(this).prop('checked')) {
+                                                                $('.my-checkbox').prop('checked', true);
+                                                            } else {
+                                                                $('.my-checkbox').prop('checked', false);
+                                                            }
+                                                        });
+                                                    });
+                                                </script>
+                                            </td>
+                                            <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
+                                            <td class="mailbox-name"><a href="/Message/GetSendBoxMessageDetails/@item.MessageID">@item.MessageReceiverMail</a></td>
+                                            <td class="mailbox-subject">
+                                                <b>@item.MessageSubject</b>
+                                            </td>
+                                            <td class="mailbox-attachment"></td>
+                                            <td class="mailbox-date">@(((DateTime)item.MessageDate).ToString("dd-MMM-yyyy"))</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <!-- /.table -->
+                        </div>
+                        <!-- /.mail-box-messages -->
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer p-0">
+                        <div class="mailbox-controls">
+                            <!-- Check all button -->
+                            <div class="btn-group">
+                                <button type="button" onclick="deleteSelectedDrafts()" class="btn btn-primary btn-sm"><i class="far fa-trash-alt"></i></button>
+                            </div>
+                            <!-- /.btn-group -->
+                            <button type="button" onclick="location.reload()" class="btn btn-primary btn-sm"><i class="fas fa-sync-alt"></i></button>
+                            <div class="float-right">
+                                <div class="btn-group">
+                                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Sendbox", new { p = page }), new PagedListRenderOptions()
+                                    {
+                                        LiElementClasses = new List<string>() { "page-item" },
+                                        UlElementClasses = new List<string>() { "pagination" },
+                                        ContainerDivClasses = new List<string>() { "btn-group" },
+                                        LinkToPreviousPageFormat = "<button type='button' class='btn btn-sm btn-primary border rounded-circle'><i class='fas fa-chevron-left'></i></button>",
+                                        LinkToNextPageFormat = "<button type='button' class='btn btn-sm btn-primary border rounded-circle'><i class='fas fa-chevron-right'></i></button>",
+                                        DisplayPageCountAndCurrentLocation = false,
+                                        DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                                        DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                                        LinkToIndividualPageFormat = "",
+                                        PageCountAndCurrentLocationFormat = ""
+                                    })
+                                </div>
+                                <!-- /.btn-group -->
+                            </div>
+                            <!-- /.float-right -->
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+<script>
+        function deleteSelectedDrafts() {
+            var selectedDrafts = [];
+            $('.my-checkbox:checked').each(function () {
+                selectedDrafts.push($(this).val());
+            });
+            if (selectedDrafts.length > 0) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/Message/DeleteDrafts',
+                    data: { selectedDrafts: selectedDrafts },
+                    success: function (result) {
+                        // Silme işlemi başarılıysa yapılacak işlemler
+                        location.reload();
+                    },
+                    error: function (xhr, status, error) {
+                        // Silme işlemi başarısız olursa yapılacak işlemler
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
+

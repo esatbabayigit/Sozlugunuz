@@ -1,0 +1,161 @@
+﻿@model EntityLayer.Concreate.Writer
+@{
+    ViewBag.Title = "AddWriter";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    .file-input-container {
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+    }
+
+    .file-input {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        opacity: 0;
+        z-index: 2;
+    }
+
+    .file-input-label {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: #3498db;
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .file-input-label:hover {
+        background-color: #2980b9;
+    }
+
+    .file-input-label:active {
+        background-color: #1abc9c;
+    }
+</style>
+<h2>Yeni Yazar Ekleme Sayfası</h2>
+
+@using (Html.BeginForm("AddWriter", "Writer", FormMethod.Post,new {enctype ="multipart/form-data"}))
+{
+    <div class="form-group">
+        @Html.Label("YAZAR ADI:")
+        @Html.TextBoxFor(x => x.WriterName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.WriterName)
+        <br />
+        @Html.Label("YAZAR SOYADI:")
+        @Html.TextBoxFor(x => x.WriterSurname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.WriterSurname)
+        <br />
+        @Html.Label("YAZAR MAİLİ:")
+        @Html.TextBoxFor(x => x.WriterMail, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.WriterMail)
+        <br />
+        @Html.Label("YAZAR ŞİFRESİ:")
+        @Html.TextBoxFor(x => x.WriterPassword, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.WriterPassword)
+        <br />
+        @Html.Label("YAZAR AÇIKLAMASI:")
+        @Html.TextAreaFor(x => x.WriterAbout, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.WriterAbout)
+        <br />
+        @Html.Label("YAZAR UNVAN:")
+        @Html.TextBoxFor(x => x.WriterTitle, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.WriterTitle)
+        <br />
+        @Html.Label("YAZAR ÖZELLİK 1:")
+        @Html.TextBoxFor(x => x.WriterAttention1, new { @class = "form-control" })
+        <br />
+        @Html.Label("YAZAR ÖZELLİK 2:")
+        @Html.TextBoxFor(x => x.WriterAttention2, new { @class = "form-control" })
+        <br />
+        @Html.Label("YAZAR ÖZELLİK 3:")
+        @Html.TextBoxFor(x => x.WriterAttention3, new { @class = "form-control" })
+        <br />
+        @Html.Label("YAZAR ÖZELLİK 4:")
+        @Html.TextBoxFor(x => x.WriterAttention4, new { @class = "form-control" })
+        <br />
+        @Html.Label("YAZAR UZUN KENDİNİ AÇIKLAMASI:")
+        @Html.TextBoxFor(x => x.WriterLongAbout, new { @class = "form-control" })
+        <br />
+        @Html.Label("YAZAR DENEYİM:")
+        @Html.TextBoxFor(x => x.WriterExperience, new { @class = "form-control" })
+        <br />
+        @Html.Label("YAZAR TEL NO:")
+        @Html.TextBoxFor(x => x.WriterPhoneNumber, new { @class = "form-control" })
+        <br />
+        @Html.Label("YAZAR YETENEK 1:")
+        @Html.TextBoxFor(x => x.WriterSkill1, new { @class = "form-control" })
+        <br />
+        @Html.Label("YAZAR YETENEK 1 YÜZDE GİRİNİZ (NE KADAR BİLİYOR):")
+        @Html.TextBoxFor(x => x.WriterSkill11, new { @class = "form-control" })
+        <br />
+        @Html.Label("YAZAR YETENEK 2:")
+        @Html.TextBoxFor(x => x.WriterSkill2, new { @class = "form-control" })
+        <br />
+        @Html.Label("YAZAR YETENEK 2 YÜZDE GİRİNİZ (NE KADAR BİLİYOR):")
+        @Html.TextBoxFor(x => x.WriterSkill22, new { @class = "form-control" })
+        <br />
+        @Html.Label("YAZAR YETENEK 3:")
+        @Html.TextBoxFor(x => x.WriterSkill3, new { @class = "form-control" })
+        <br />
+        @Html.Label("YAZAR YETENEK 3 YÜZDE GİRİNİZ (NE KADAR BİLİYOR):")
+        @Html.TextBoxFor(x => x.WriterSkill33, new { @class = "form-control" })
+        <br />
+        @Html.Label("YAZAR YETENEK 4:")
+        @Html.TextBoxFor(x => x.WriterSkill4, new { @class = "form-control" })
+        <br />
+        @Html.Label("YAZAR YETENEK 4 YÜZDE GİRİNİZ (NE KADAR BİLİYOR):")
+        @Html.TextBoxFor(x => x.WriterSkill44, new { @class = "form-control" })
+        <br />
+        @Html.Label("YAZAR YETENEK 5:")
+        @Html.TextBoxFor(x => x.WriterSkill5, new { @class = "form-control" })
+        <br />
+        @Html.Label("YAZAR YETENEK 5 YÜZDE GİRİNİZ (NE KADAR BİLİYOR):")
+        @Html.TextBoxFor(x => x.WriterSkill55, new { @class = "form-control" })
+        <br />
+        @Html.Label("YAZAR YETENEK 6:")
+        @Html.TextBoxFor(x => x.WriterSkill6, new { @class = "form-control" })
+        <br />
+        @Html.Label("YAZAR YETENEK 6 YÜZDE GİRİNİZ (NE KADAR BİLİYOR):")
+        @Html.TextBoxFor(x => x.WriterSkill66, new { @class = "form-control" })
+        <br />
+        @Html.Label("YAZAR INSTAGRAM LİNKİ:")
+        @Html.TextBoxFor(x => x.WriterInsatgram, new { @class = "form-control" })
+        <br />
+        @Html.Label("YAZAR TWITTER LİNKİ:")
+        @Html.TextBoxFor(x => x.WriterTwitter, new { @class = "form-control" })
+        <br />
+        @Html.Label("YAZAR FACEBOOK LİNKİ:")
+        @Html.TextBoxFor(x => x.WriterFacebook, new { @class = "form-control" })
+        <br />
+        @Html.Label("YAZAR FOTOĞRAFI:")
+        <br>
+        <div class="file-input-container">
+            <input type="file" id="file-input" class="file-input" name="WriterImage">
+            <label for="file-input" class="file-input-label">Dosya Seç</label>
+        </div>
+        <br />
+        <button class="btn btn-success">YAZARI EKLE</button>
+    </div>
+}
+
+<script>
+    const fileInput = document.querySelector('#file-input');
+    const fileInputLabel = document.querySelector('.file-input-label');
+
+    fileInput.addEventListener('change', (event) => {
+        const fileName = event.target.files[0].name;
+        fileInputLabel.classList.add('uploading');
+        fileInputLabel.textContent = fileName;
+    });
+
+    fileInputLabel.addEventListener('animationend', () => {
+        fileInputLabel.classList.remove('uploading');
+    });
+</script>

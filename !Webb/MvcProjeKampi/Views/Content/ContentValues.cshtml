@@ -1,0 +1,104 @@
+﻿@using EntityLayer.Concreate
+@model PagedList.IPagedList<Content>
+@using PagedList
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "ContentValues";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<br />
+<button class="btn-outline-danger btn-sm"><h6><font style="font-weight: 900">Arama Yapın</font></h6></button>
+
+@using (Html.BeginForm("ContentValues", "Content", FormMethod.Post))
+{
+    <!-- Site wrapper -->
+
+
+    <div class="input-group mb-3">
+        <input type="text" name="s" style="background-color: lightgray;" class="form-control" placeholder="Aramak İstediğiniz Anahtar Kelimeyi Giriniz." aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" style="background-color: lightgray;" name="ses" value="1" type="submit"><font color="blue">Tümünü Gör</font></button>
+        </div>
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" style="background-color: lightgray;" type="submit"><font color="blue">Ara</font></button>
+        </div>
+    </div>
+    <br />
+}
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <section class="content">
+            <div class="container-fluid">
+                <!-- Timelime example  -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- The time line -->
+                        <div class="timeline">
+                            @foreach (var item in Model)
+                            {
+
+
+                                <!-- timeline time label -->
+                                <div class="time-label">
+                                    <span class="bg-success">@(((DateTime)item.ContentDateTime).ToString("dd-MMM-yyyy")) ~@item.Writer.WriterName @item.Writer.WriterSurname</span>
+                                </div>
+                                <!-- /.timeline-label -->
+                                <!-- timeline item -->
+                                <div>
+                                    <i class="fas fa-comment bg-yellow"></i>
+                                    <div class="timeline-item">
+                                        <h3 class="timeline-header"><a href="#">@item.Heading.HeadingName </a></h3>
+                                        <div class="timeline-body">
+                                            @item.ContentValue
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <!-- END timeline item -->
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </div>
+            <!-- /.timeline -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            @if (Model.PageCount > 1)
+            {
+                <li class="page-item @(Model.PageNumber == 1 ? "disabled" : "")">
+                    <a class="page-link" href="@Url.Action("ContentValues", new { p = 1 })"><i class="fas fa-angle-double-left"></i></a>
+                </li>
+                <li class="page-item @(Model.PageNumber == 1 ? "disabled" : "")">
+                    <a class="page-link" href="@Url.Action("ContentValues", new { p = Model.PageNumber - 1 })"><i class="fas fa-angle-left"></i></a>
+                </li>
+
+                for (int i = 1; i <= Model.PageCount; i++)
+                {
+                    if (i == Model.PageNumber)
+                    {
+                        <li class="page-item active"><a class="page-link">@i</a></li>
+                    }
+                    else
+                    {
+                        <li class="page-item"><a class="page-link" href="@Url.Action("ContentValues", new { p = i })">@i</a></li>
+                    }
+                }
+
+                <li class="page-item @(Model.PageNumber == Model.PageCount ? "disabled" : "")">
+                    <a class="page-link" href="@Url.Action("ContentValues", new { p = Model.PageNumber + 1 })"><i class="fas fa-angle-right"></i></a>
+                </li>
+                <li class="page-item @(Model.PageNumber == Model.PageCount ? "disabled" : "")">
+                    <a class="page-link" href="@Url.Action("ContentValues", new { p = Model.PageCount })"><i class="fas fa-angle-double-right"></i></a>
+                </li>
+            }
+        </ul>
+    </nav>
+    <!-- ./wrapper -->
+</body>
+</html>

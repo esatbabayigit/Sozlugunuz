@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "SweetAlert";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+<style>
+    body {
+        font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+</style>
+
+<button class="btn btn-info" id="btn1">Sweet Alert Aç</button>
+
+<script>
+    $('#btn1').click(function () {
+        Swal.fire(
+            'Good job!',
+            'You clicked the button!',
+            'success'
+        )
+    });
+
+</script>
+
+
+
+<!-- buttonnnss-->
+<!--css i web in içinde-->
+<head>
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/web/css/animation-button.css" type="text/css" />
+</head>
+
+<body>
+    <button class="modern-button">Gönder</button>
+</body>
+
+
+<script>
+    const button = document.querySelector('.modern-button');
+
+    button.addEventListener('mouseover', () => {
+        button.style.transform = 'scale(1.05)';
+    });
+
+    button.addEventListener('mouseleave', () => {
+        button.style.transform = 'scale(1)';
+    });
+</script>
+
+
+

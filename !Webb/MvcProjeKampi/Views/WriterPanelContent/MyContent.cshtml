@@ -1,0 +1,129 @@
+﻿@using EntityLayer.Concreate
+@model PagedList.IPagedList<Content>
+@using PagedList
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "MyContent";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+
+@if (ViewBag.values == 0)
+{
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <link rel="stylesheet" href="~/AdminLTE-3.0.4/butoncssleri/aramabutonu.css" type="text/css" />
+    </head>
+    <body class="hold-transition sidebar-mini">
+    <br/>
+    <form method="post" action="/WriterPanelContent/MyContent">
+        <div class="input-group input-group-sm">
+
+            <input type="text" class="form-control" name="yazi" placeholder="Mesaj İçeriklerinde Ara">
+
+            <div class="input-group-append">
+                <button class="my-button">
+                    <i class="fa fa-search" style="color: white; margin-right: 10px;"></i>
+                </button>
+            </div>
+            <div class="input-group-append">
+                <button class="my-button" name="ses" value="1">
+                    <i class="nav-icon fas fa-bars" style="color: white; margin-right: 10px;"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+    <br />
+    <!-- Site wrapper -->
+    <div class="wrapper">
+        <section class="content">
+            <div class="container-fluid">
+
+                <!-- Timelime example  -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- The time line -->
+                        <div class="timeline">
+                            @foreach (var item in Model)
+                            {
+                                <!-- timeline time label -->
+                                <div class="time-label">
+                                    <span class="bg-success">@(((DateTime)item.ContentDateTime).ToString("dd-MMM-yyyy"))</span>
+                                </div>
+                                <!-- /.timeline-label -->
+                                <!-- timeline item -->
+                                <div>
+                                    <i class="fas fa-comment bg-yellow"></i>
+                                    <div class="timeline-item">
+                                        <h3 class="timeline-header"><a href="#">@item.Writer.WriterName @item.Writer.WriterSurname --- Başlık: @item.Heading.HeadingName</a></h3>
+                                        <div class="timeline-body">
+                                            @item.ContentValue
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <!-- END timeline item -->
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </div>
+            <!-- /.timeline -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- ./wrapper -->
+    </body>
+</html>
+}
+else
+{
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Aradığınız Sayfa Bulunamadı</title>
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
+
+    <!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="~/AdminLTE-3.0.4/colorlib-error-404-10/css/style.css" />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="notfound">
+        <div class="notfound">
+            <div class="notfound-404">
+                <h1>İçerik Yok!</h1>
+            </div>
+            <h2>İstediğiniz Başlığa Ait İçeriğimiz Yok</h2>
+            <p>Bulamadık :(</p>
+            <a href="/WriterPanel/WriterHeading">Başlık Sayfasına Dön</a>
+        </div>
+    </div>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+}
+
+@Html.PagedListPager((IPagedList)Model, p => Url.Action("MyContent", new { p }), new PagedListRenderOptions()
+{
+    LiElementClasses = new List<string>() { "page-link" }
+})

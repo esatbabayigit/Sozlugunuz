@@ -1,0 +1,316 @@
+﻿
+@using EntityLayer.Concreate
+@using PagedList
+@using PagedList.Mvc
+
+@model PagedList.IPagedList<Content>
+
+
+
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sözlüğünüz</title>
+    <link rel="shortcut icon" type="image/png" href="~/AdminLTE-3.0.4/Modernize-1.0.0/src/assets/images/logos/favicon.png" />
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/Modernize-1.0.0/src/assets/css/styles.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-XBbk0GvbW09MQ0F5y5scg65fC9XzO3Ox/sGRiKj0YvHTFlb2WcHnsAjyKnfR1JNpXzyWfP3oNn7HxY/87DEQ8Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/butoncssleri/aramabutonu.css" type="text/css" />
+    <style>
+        .search-container form {
+            display: flex;
+            width: 400px;
+            background-color: #fff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            border-radius: 25px;
+            overflow: hidden;
+        }
+
+        .search-container input[type="text"] {
+            flex: 1;
+            padding: 15px;
+            font-size: 16px;
+            border: none;
+            background-color: transparent;
+        }
+
+        .search-container button[type="submit"] {
+            border: none;
+            background-color: transparent;
+            color: #444;
+            font-size: 20px;
+            padding: 0 15px;
+            transition: all 0.3s ease;
+        }
+
+            .search-container button[type="submit"]:hover {
+                color: #007bff;
+            }
+
+            .search-container button[type="submit"] i {
+                margin-right: 5px;
+            }
+    </style>
+
+
+</head>
+
+<body style="background-color: black">
+    <!--  Body Wrapper -->
+    <div class="page-wrapper" style="background-color: black" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+         data-sidebar-position="fixed" data-header-position="fixed">
+
+        <!-- Sidebar Start -->
+        <aside class="left-sidebar" style="background-color: black">
+            <!-- Sidebar scroll-->
+            <div>
+                <div class="brand-logo d-flex align-items-center justify-content-between">
+                    <div class="col-lg-4 footer-end-grid mt-md-0 mt-sm-5" data-aos="fade-up">
+                        <h2>
+                            <a href="index.html">
+                                Sözlüğünüz
+                            </a>
+                        </h2>
+                    </div>
+                </div>
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+                    <ul id="sidebarnav">
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu"><font color="gray">Başlıklar</font></span>
+                        </li>
+                        @{
+                            var visited = new HashSet<string>();
+                        }
+                        @foreach (var item in Model)
+                        {
+                            if (!visited.Contains(item.Heading.HeadingName))
+                            {
+                                visited.Add(item.Heading.HeadingName);
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="/DictionaryAll/LayoutPage?yazi=@item.Heading.HeadingName" aria-expanded="false">
+                                        <span>
+                                            <i style="color: dimgrey" class="ti ti-layout-dashboard"></i>
+                                        </span>
+                                        <span class="hide-menu"><font color="white">@item.Heading.HeadingName</font></span>
+                                    </a>
+                                </li>
+                            }
+                        }
+                        @if (ViewBag.typs == 1)
+                        {
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="/DictionaryAll/LayoutPage" aria-expanded="false">
+                                    <span>
+                                        <i style="color: dimgrey" class="ti ti-layout-dashboard"></i>
+                                    </span>
+                                    <span class="hide-menu"><font color="white">Tüm Başlıklar</font></span>
+                                </a>
+                            </li>
+                        }
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu" style="color: dimgrey">İşlemler</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/Login/WriterLogin" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-login" style="color: dimgrey"></i>
+                                </span>
+                                <span class="hide-menu" style="color: white">Giriş</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/Home/HomePage" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-user-plus" style="color: dimgrey"></i>
+                                </span>
+                                <span class="hide-menu" style="color: white">Kaydol (İletişime git)</span>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <div class="body-wrapper" style="background-color: black">
+            <header class="app-header" style="background-color: black">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <ul class="navbar-nav">
+                        <div class="search-container">
+                            <form action="/DictionaryAll/LayoutPage">
+                                <input type="text" name="yazi" placeholder="Arama yapın...">
+                                <button type="submit" style="border:none; background:none;margin-right: -25px"><span style="font-size:1.2rem; color:black;">🔍</span></button>
+                                <button type="submit" name="ses" value="1" style="border:none; background:none;">
+                                    <span style="font-size:1.5rem; color:black; display:block; width: 20px; height: 3px; background-color: black; margin: 3px 0;"></span>
+                                    <span style="font-size:1.5rem; color:black; display:block; width: 20px; height: 3px; background-color: black; margin: 3px 0;"></span>
+                                    <span style="font-size:1.5rem; color:black; display:block; width: 20px; height: 3px; background-color: black; margin: 3px 0;"></span>
+                                </button>
+                            </form>
+                        </div>
+                    </ul>
+                    <div class="navbar-collapse justify-content-end px-0" id="navbarNav" style="background-color: black">
+                        <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end" style="background-color: black">
+                            <a href="/Home/HomePage" target="_blank" class="btn btn-primary">Anasayfaya Dön</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    <img src="~/AdminLTE-3.0.4/Modernize-1.0.0/src/assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2" style="background-color: black">
+                                    <div class="message-body">
+                                        <a href="/DictionaryAll/LayoutPageErrorPage" class="d-flex align-items-center gap-2 dropdown-item" data-toggle="modal" data-target="#myModal">
+                                            <i class="ti ti-user fs-6"></i>
+                                            <p class="mb-0 fs-3">Profilim</p>
+                                        </a>
+
+
+                                        <a href="/DictionaryAll/LayoutPageErrorPage" class="d-flex align-items-center gap-2 dropdown-item">
+                                            <i class="ti ti-mail fs-6"></i>
+                                            <p class="mb-0 fs-3">Hesabım</p>
+                                        </a>
+                                        <a href="/DictionaryAll/LayoutPageErrorPage" class="d-flex align-items-center gap-2 dropdown-item">
+                                            <i class="ti ti-list-check fs-6"></i>
+                                            <p class="mb-0 fs-3">Planlarım</p>
+                                        </a>
+                                        <a href="/DictionaryAll/LayoutPageErrorPage" class="btn btn-outline-primary mx-3 mt-2 d-block">Çıkış Yap</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <section class="content" style="background-color: black">
+                <br />
+                <br />
+                <br />
+                <!-- Default box -->
+                <div class="card card-solid" style="background-color: black; ">
+                    <div class="card-body pb-0" style="background-color: black; ">
+                        <div class="row d-flex align-items-stretch" style="background-color: black">
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+                                    <div class="card bg-light">
+                                        <div class="card-header text-muted border-bottom-0">
+                                            <b><font color="darkblue">@item.Writer.WriterTitle</font></b>
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="row">
+                                                <div class="col-7">
+                                                    <h2 class="lead"><b>@item.Writer.WriterName @item.Writer.WriterSurname</b></h2><br />
+                                                    <p class="text-muted text-sm"><b>İçerik Başlığı: </b><font color="red">@item.Heading.HeadingName</font></p>
+                                                    <ul class="ml-4 mb-0 fa-ul text-muted">
+                                                        <li class="small" style="width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                                            <span class="fa-li"><i class="fas fa-lg fa-building"></i></span>
+                                                            <br />
+                                                            <b>İçerik: </b><br />
+                                                            <em>
+                                                                <b>
+                                                                    <font color="black"><span class="content-value">@item.ContentValue</span></font>
+                                                                </b>
+                                                            </em>
+                                                        </li>
+                                                    </ul>
+                                                    <a href="#" class="read-more-link">Devamını oku</a>
+                                                    <br />
+                                                    <br />
+                                                    <ul class="ml-4 mb-0 fa-ul text-muted">
+                                                        <li class="small" style="width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span><b>Mail: <font color="black">@item.Writer.WriterMail</font></b> </li>
+
+                                                    </ul>
+                                                </div>
+                                                <div class="col-5 text-center">
+                                                    <img src="@item.Writer.WriterImage" alt="" class="img-circle img-fluid">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <div class="text-right">
+                                                <a href="/DictionaryAll/LayoutPageWriterProfile/@item.WriterID" target="_blank " class="btn btn-primary btn-sm" style="display: flex;justify-content: center">
+                                                    <i class="fas fa-atom"> Yazarın Profili</i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <div class="d-flex justify-content-center">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination">
+                                        @if (Model.PageCount > 1)
+                                        {
+                                            <li class="page-item @(Model.PageNumber == 1 ? "disabled" : "")">
+                                                <a class="page-link" href="@Url.Action("LayoutPage", new { p = 1,yazi=ViewBag.yazi })"><b><font color="darkblue"><i class="fas fa-angle-left"><<</i></font></b></a>
+                                            </li>
+                                            <li class="page-item @(Model.PageNumber == 1 ? "disabled" : "")">
+                                                <a class="page-link" href="@Url.Action("LayoutPage", new { p = Model.PageNumber - 1 ,yazi=ViewBag.yazi})"><b><font color="darkblue"><i class="fas fa-angle-left"><</i></font></b></a>
+                                            </li>
+
+                                            for (int i = 1; i <= Model.PageCount; i++)
+                                            {
+                                                if (i == Model.PageNumber)
+                                                {
+                                                    <li class="page-item active"><a class="page-link">@i</a></li>
+                                                }
+                                                else
+                                                {
+                                                    <li class="page-item"><a class="page-link" href="@Url.Action("LayoutPage", new { p = i,yazi=ViewBag.yazi })">@i</a></li>
+                                                }
+                                            }
+
+                                            <li class="page-item @(Model.PageNumber == Model.PageCount ? "disabled" : "")">
+                                                <a class="page-link" href="@Url.Action("LayoutPage", new { p = Model.PageNumber + 1,yazi=ViewBag.yazi })"><b><font color="darkblue"><i class="fas fa-angle-right">></i></font></b></a>
+                                            </li>
+                                            <li class="page-item @(Model.PageNumber == Model.PageCount ? "disabled" : "")">
+                                                <a class="page-link" href="@Url.Action("LayoutPage", new { p = Model.PageCount,yazi=ViewBag.yazi })"><b><font color="blue"><i class="fas fa-angle-right">>></i></font></b></a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <script>
+                    const readMoreLinks = document.querySelectorAll('.read-more-link');
+                    const contentValues = document.querySelectorAll('.content-value');
+
+                    readMoreLinks.forEach(function (readMoreLink, index) {
+                        readMoreLink.addEventListener('click', function (e) {
+                            e.preventDefault();
+                            contentValues[index].style.whiteSpace = 'normal';
+                            readMoreLink.style.display = 'none';
+                        });
+                    });
+                </script>
+                <!-- /.card -->
+            </section>
+        </div>
+        <!--  Sidebar End -->
+        <!--  Main wrapper -->
+
+    </div>
+    <script src="~/AdminLTE-3.0.4/Modernize-1.0.0/src/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/Modernize-1.0.0/src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/Modernize-1.0.0/src/assets/js/sidebarmenu.js"></script>
+    <script src="~/AdminLTE-3.0.4/Modernize-1.0.0/src/assets/js/app.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/Modernize-1.0.0/src/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/Modernize-1.0.0/src/assets/libs/simplebar/dist/simplebar.js"></script>
+    <script src="~/AdminLTE-3.0.4/Modernize-1.0.0/src/assets/js/dashboard.js"></script>
+</body>
+
+</html>
